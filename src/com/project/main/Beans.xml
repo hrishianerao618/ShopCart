@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<bean id="product" class="com.project.beans.Product"
+		scope="prototype">
+		<!-- <property name="vendor" ref="vendor"></property> <property name="category" 
+			ref="category"></property> -->
+	</bean>
+	
+	<bean id="vendor" class="com.project.beans.Vendor"
+		scope="prototype">
+		<property name="id" value="0"></property>
+		<property name="name" value="name"></property>
+		
+	</bean>
+	
+	<bean id="category" class="com.project.beans.Category"
+		scope="prototype">
+		
+	</bean>
+	
+	
+	<bean id="user" class="com.project.beans.User"></bean>
+	
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.project.beans"></context:component-scan>
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		
+	<property name="username" value="${jdbc.username}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+	</bean>
+	<context:property-placeholder
+		location="classpath:com/project/main/jdbc.properties" />
+	
+	<bean id="dbConfig" class="com.project.model.DBConfig"></bean>
+	
+</beans>
